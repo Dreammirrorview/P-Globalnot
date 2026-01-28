@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Bank Pilgrim - Pilgrims Coin Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Cover Page -->
+        <div id="coverPage" class="cover-page">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h1>Global Bank Pilgrim</h1>
+                <h2>Pilgrims Coin Platform</h2>
+                <p class="subtitle">Powered by O.A.A. Pinetree Solution in partnership with Global Bank</p>
+            </div>
+            
+            <div class="auth-buttons">
+                <button class="auth-btn primary" onclick="showSection('register')">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+                <button class="auth-btn" onclick="showSection('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="auth-btn" onclick="showSection('forgotPassword')">
+                    <i class="fas fa-key"></i> Forgot Password
+                </button>
+            </div>
+            
+            <div class="admin-link">
+                <a href="#" onclick="showSection('adminLogin')">Administrator Access</a>
+            </div>
+        </div>
+
+        <!-- Registration Page -->
+        <div id="registerPage" class="auth-section hidden">
+            <div class="auth-container">
+                <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirmPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" name="country" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ID Document Type</label>
+                        <select name="idType" required>
+                            <option value="">Select ID Type</option>
+                            <option value="drivers_license">Driver's License</option>
+                            <option value="passport">International Passport</option>
+                            <option value="voter_card">Voter's Card</option>
+                            <option value="national_id">National ID Card</option>
+                            <option value="work_id">Work ID</option>
+                            <option value="bank_statement">Bank Statement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ID Document Number</label>
+                        <input type="text" name="idNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Passport Photograph</label>
+                        <input type="file" name="passportPhoto" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>BVN/NIN (Optional)</label>
+                        <input type="text" name="bvnNin">
+                    </div>
+                    <button type="submit" class="submit-btn">Register Account</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="loginPage" class="auth-section hidden">
+            <div class="auth-container">
+                <h2><i class="fas fa-sign-in-alt"></i> Login to Account</h2>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Username or Email</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Forgot Password Page -->
+        <div id="forgotPasswordPage" class="auth-section hidden">
+            <div class="auth-container">
+                <h2><i class="fas fa-key"></i> Reset Password</h2>
+                <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Reset Link</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Admin Login Page -->
+        <div id="adminLoginPage" class="auth-section hidden">
+            <div class="auth-container admin-login">
+                <h2><i class="fas fa-user-shield"></i> Administrator Access</h2>
+                <p class="security-notice">⚠️ Restricted Access - Authorized Personnel Only</p>
+                <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label>Admin Username</label>
+                        <input type="text" name="adminUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Admin Password</label>
+                        <input type="password" name="adminPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn admin-btn">Access Dashboard</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Customer Dashboard -->
+        <div id="customerDashboard" class="dashboard-section hidden">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    <img src="default-avatar.png" alt="User Avatar" class="user-avatar">
+                    <div class="user-details">
+                        <h3 id="customerName">Welcome, Customer</h3>
+                        <p id="customerAccount">Account: 1234567890</p>
+                        <p id="customerEmail">customer@email.com</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- Wallet Overview -->
+            <div class="wallet-overview">
+                <div class="wallet-card coin-wallet">
+                    <div class="wallet-header">
+                        <h3><i class="fas fa-coins"></i> Pilgrims Coin Wallet</h3>
+                    </div>
+                    <div class="wallet-balance">
+                        <span class="balance-amount" id="coinBalance">0.00000000</span>
+                        <span class="currency">PGC</span>
+                    </div>
+                    <p class="wallet-rate">1 PGC = $0.50 USD</p>
+                </div>
+
+                <div class="wallet-card cash-wallet">
+                    <div class="wallet-header">
+                        <h3><i class="fas fa-dollar-sign"></i> Pilgrims Cash Wallet</h3>
+                    </div>
+                    <div class="wallet-balance">
+                        <span class="balance-amount" id="cashBalance">$0.00</span>
+                        <span class="currency">USD</span>
+                    </div>
+                    <p class="wallet-rate">USD Balance</p>
+                </div>
+
+                <div class="wallet-card mining-status">
+                    <div class="wallet-header">
+                        <h3><i class="fas fa-hammer"></i> Mining Status</h3>
+                    </div>
+                    <div class="mining-info">
+                        <p>Status: <span id="miningStatus" class="status-active">Active</span></p>
+                        <p>Rate: <span id="miningRate">0.00000000</span> PGC/sec</p>
+                        <p>Total Mined: <span id="totalMined">0.00000000</span> PGC</p>
+                    </div>
+                    <button class="mining-toggle" id="miningToggle" onclick="toggleMining()">
+                        <i class="fas fa-pause"></i> Pause Mining
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Navigation -->
+            <div class="dashboard-nav">
+                <button class="nav-btn active" onclick="showDashboardSection('overview')">
+                    <i class="fas fa-home"></i> Overview
+                </button>
+                <button class="nav-btn" onclick="showDashboardSection('mining')">
+                    <i class="fas fa-hammer"></i> Mining
+                </button>
+                <button class="nav-btn" onclick="showDashboardSection('wallet')">
+                    <i class="fas fa-wallet"></i> Wallet
+                </button>
+                <button class="nav-btn" onclick="showDashboardSection('exchange')">
+                    <i class="fas fa-exchange-alt"></i> Exchange
+                </button>
+                <button class="nav-btn" onclick="showDashboardSection('trading')">
+                    <i class="fas fa-chart-line"></i> Trading
+                </button>
+                <button class="nav-btn" onclick="showDashboardSection('transactions')">
+                    <i class="fas fa-history"></i> Transactions
+                </button>
+                <button class="nav-btn" onclick="showDashboardSection('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </div>
+
+            <!-- Dashboard Content Sections -->
+            <div id="overviewSection" class="dashboard-content">
+                <h3>Account Overview</h3>
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-coins"></i>
+                        <h4>Total Pilgrims Coin</h4>
+                        <p id="overviewCoin">0.00000000 PGC</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h4>Total Cash Value</h4>
+                        <p id="overviewCash">$0.00 USD</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Today's Profit</h4>
+                        <p id="todayProfit">$0.00 USD</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-history"></i>
+                        <h4>Total Transactions</h4>
+                        <p id="totalTransactions">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="miningSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-hammer"></i> Mining Center</h3>
+                <div class="mining-dashboard">
+                    <div class="mining-stats">
+                        <div class="mining-stat">
+                            <h4>Mining Rate</h4>
+                            <p id="miningRateDisplay">0.00000000 PGC/second</p>
+                        </div>
+                        <div class="mining-stat">
+                            <h4>Today's Mining</h4>
+                            <p id="todayMining">0.00000000 PGC</p>
+                        </div>
+                        <div class="mining-stat">
+                            <h4>Total Mined</h4>
+                            <p id="totalMinedDisplay">0.00000000 PGC</p>
+                        </div>
+                        <div class="mining-stat">
+                            <h4>Cash Earned</h4>
+                            <p id="cashEarned">$0.00 USD</p>
+                        </div>
+                    </div>
+                    <div class="mining-visualizer">
+                        <div class="mining-animation">
+                            <i class="fas fa-coins fa-spin"></i>
+                            <span id="miningCounter">0.00000000</span>
+                        </div>
+                    </div>
+                    <div class="mining-controls">
+                        <button class="mining-control-btn" onclick="startMining()">
+                            <i class="fas fa-play"></i> Start Mining
+                        </button>
+                        <button class="mining-control-btn pause" onclick="pauseMining()">
+                            <i class="fas fa-pause"></i> Pause Mining
+                        </button>
+                        <button class="mining-control-btn stop" onclick="stopMining()">
+                            <i class="fas fa-stop"></i> Stop Mining
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="walletSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-wallet"></i> Wallet Operations</h3>
+                <div class="wallet-operations">
+                    <div class="operation-card">
+                        <h4><i class="fas fa-paper-plane"></i> Send Crypto</h4>
+                        <form id="sendCryptoForm" onsubmit="handleSendCrypto(event)">
+                            <div class="form-group">
+                                <label>Recipient Wallet Address</label>
+                                <input type="text" name="walletAddress" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" step="0.00000001" name="amount" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Currency</label>
+                                <select name="currency" required>
+                                    <option value="PGC">Pilgrims Coin (PGC)</option>
+                                    <option value="PGC-CASH">Pilgrims Cash</option>
+                                    <option value="BTC">Bitcoin (BTC)</option>
+                                    <option value="ETH">Ethereum (ETH)</option>
+                                    <option value="BCH">Bitcoin Cash (BCH)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="operation-btn">Send</button>
+                        </form>
+                    </div>
+
+                    <div class="operation-card">
+                        <h4><i class="fas fa-download"></i> Receive Crypto</h4>
+                        <div class="receive-section">
+                            <p>Your Wallet Address:</p>
+                            <div class="wallet-address-box">
+                                <input type="text" id="myWalletAddress" readonly value="PGC-1234567890-ABCD">
+                                <button onclick="copyWalletAddress()" class="copy-btn">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <div class="qr-code">
+                                <i class="fas fa-qrcode fa-3x"></i>
+                                <p>Scan to send crypto</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="operation-card">
+                        <h4><i class="fas fa-credit-card"></i> Deposit Funds</h4>
+                        <form id="depositForm" onsubmit="handleDeposit(event)">
+                            <div class="form-group">
+                                <label>Deposit Method</label>
+                                <select name="depositMethod" required>
+                                    <option value="card">Credit/Debit Card</option>
+                                    <option value="bank">Bank Transfer</option>
+                                    <option value="crypto">Crypto Deposit</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount (USD)</label>
+                                <input type="number" step="0.01" name="amount" required>
+                            </div>
+                            <button type="submit" class="operation-btn">Deposit</button>
+                        </form>
+                    </div>
+
+                    <div class="operation-card">
+                        <h4><i class="fas fa-money-bill-wave"></i> Withdraw Funds</h4>
+                        <form id="withdrawForm" onsubmit="handleWithdraw(event)">
+                            <div class="form-group">
+                                <label>Withdrawal Method</label>
+                                <select name="withdrawMethod" required>
+                                    <option value="bank">Bank Account</option>
+                                    <option value="crypto">Crypto Wallet</option>
+                                    <option value="card">Debit Card</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" step="0.01" name="amount" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Destination</label>
+                                <input type="text" name="destination" required placeholder="Account/Wallet Address">
+                            </div>
+                            <button type="submit" class="operation-btn">Withdraw</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="exchangeSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-exchange-alt"></i> Crypto Exchange</h3>
+                <div class="exchange-platform">
+                    <div class="exchange-form">
+                        <h4>Exchange Cryptocurrency</h4>
+                        <form id="exchangeForm" onsubmit="handleExchange(event)">
+                            <div class="exchange-row">
+                                <div class="form-group">
+                                    <label>From Currency</label>
+                                    <select name="fromCurrency" id="fromCurrency" required onchange="updateExchangeRate()">
+                                        <option value="PGC">Pilgrims Coin (PGC)</option>
+                                        <option value="BTC">Bitcoin (BTC)</option>
+                                        <option value="ETH">Ethereum (ETH)</option>
+                                        <option value="BCH">Bitcoin Cash (BCH)</option>
+                                        <option value="USD">US Dollar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>To Currency</label>
+                                    <select name="toCurrency" id="toCurrency" required onchange="updateExchangeRate()">
+                                        <option value="PGC">Pilgrims Coin (PGC)</option>
+                                        <option value="BTC">Bitcoin (BTC)</option>
+                                        <option value="ETH">Ethereum (ETH)</option>
+                                        <option value="BCH">Bitcoin Cash (BCH)</option>
+                                        <option value="USD">US Dollar</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="exchange-rate">
+                                <p>Exchange Rate: <span id="exchangeRate">1 PGC = $0.50 USD</span></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" step="0.00000001" name="amount" required id="exchangeAmount" oninput="calculateExchange()">
+                            </div>
+                            <div class="exchange-result">
+                                <p>You will receive: <span id="exchangeResult">0.00000000</span> <span id="exchangeToCurrency">USD</span></p>
+                            </div>
+                            <button type="submit" class="operation-btn">Exchange Now</button>
+                        </form>
+                    </div>
+
+                    <div class="external-exchanges">
+                        <h4>External Exchange Partners</h4>
+                        <div class="exchange-links">
+                            <a href="#" class="exchange-link">
+                                <i class="fas fa-external-link-alt"></i> PancakeSwap (BSC)
+                            </a>
+                            <a href="#" class="exchange-link">
+                                <i class="fas fa-external-link-alt"></i> Uniswap (Ethereum)
+                            </a>
+                            <a href="#" class="exchange-link">
+                                <i class="fas fa-external-link-alt"></i> QuickSwap (Polygon)
+                            </a>
+                            <a href="#" class="exchange-link">
+                                <i class="fas fa-external-link-alt"></i> Coinbase
+                            </a>
+                            <a href="#" class="exchange-link">
+                                <i class="fas fa-external-link-alt"></i> Blockchain
+                            </a>
+                            <a href="#" class="exchange-link">
+                                <i class="fas fa-external-link-alt"></i> Bitcoin.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tradingSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-chart-line"></i> Trading Terminal</h3>
+                <div class="trading-terminal">
+                    <div class="trading-chart">
+                        <h4>PGC/USD Chart</h4>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-area fa-3x"></i>
+                            <p>Real-time trading chart</p>
+                        </div>
+                    </div>
+                    <div class="trading-forms">
+                        <div class="buy-sell-forms">
+                            <div class="trade-form buy-form">
+                                <h4>Buy PGC</h4>
+                                <form id="buyForm" onsubmit="handleBuy(event)">
+                                    <div class="form-group">
+                                        <label>Amount (USD)</label>
+                                        <input type="number" step="0.01" name="amount" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Order Type</label>
+                                        <select name="orderType">
+                                            <option value="market">Market Order</option>
+                                            <option value="limit">Limit Order</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="trade-btn buy-btn">Buy PGC</button>
+                                </form>
+                            </div>
+                            <div class="trade-form sell-form">
+                                <h4>Sell PGC</h4>
+                                <form id="sellForm" onsubmit="handleSell(event)">
+                                    <div class="form-group">
+                                        <label>Amount (PGC)</label>
+                                        <input type="number" step="0.00000001" name="amount" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Order Type</label>
+                                        <select name="orderType">
+                                            <option value="market">Market Order</option>
+                                            <option value="limit">Limit Order</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="trade-btn sell-btn">Sell PGC</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="transactionsSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-history"></i> Transaction History</h3>
+                <div class="transactions-list">
+                    <div class="transaction-filters">
+                        <input type="text" id="searchTransactions" placeholder="Search transactions...">
+                        <select id="filterType">
+                            <option value="all">All Types</option>
+                            <option value="deposit">Deposits</option>
+                            <option value="withdrawal">Withdrawals</option>
+                            <option value="send">Sent</option>
+                            <option value="receive">Received</option>
+                            <option value="exchange">Exchanges</option>
+                        </select>
+                    </div>
+                    <div class="transaction-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionTableBody">
+                                <tr>
+                                    <td colspan="6" class="no-transactions">No transactions yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profileSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-user"></i> Profile Settings</h3>
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <h4>Personal Information</h4>
+                        <form id="profileForm" onsubmit="updateProfile(event)">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" name="fullName" id="profileFullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" id="profileEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" id="profilePhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" name="accountNumber" id="profileAccountNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Serial Number</label>
+                                <input type="text" name="serialNumber" id="profileSerialNumber" readonly>
+                            </div>
+                            <button type="submit" class="operation-btn">Update Profile</button>
+                        </form>
+                    </div>
+                    <div class="security-settings">
+                        <h4>Security Settings</h4>
+                        <form id="securityForm" onsubmit="changePassword(event)">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" name="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" name="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="operation-btn">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="admin-dashboard hidden">
+            <div class="admin-header">
+                <div class="admin-info">
+                    <img src="admin-avatar.png" alt="Admin" class="admin-avatar">
+                    <div class="admin-details">
+                        <h3>Administrator Dashboard</h3>
+                        <p>Olawa le Abdul-Ganiyu</p>
+                        <p>Super Admin - Global Bank Pilgrim</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleAdminLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Admin Logout
+                </button>
+            </div>
+
+            <div class="admin-nav">
+                <button class="admin-nav-btn active" onclick="showAdminSection('overview')">
+                    <i class="fas fa-tachometer-alt"></i> Overview
+                </button>
+                <button class="admin-nav-btn" onclick="showAdminSection('customers')">
+                    <i class="fas fa-users"></i> Customers
+                </button>
+                <button class="admin-nav-btn" onclick="showAdminSection('transactions')">
+                    <i class="fas fa-exchange-alt"></i> Transactions
+                </button>
+                <button class="admin-nav-btn" onclick="showAdminSection('security')">
+                    <i class="fas fa-shield-alt"></i> Security
+                </button>
+                <button class="admin-nav-btn" onclick="showAdminSection('system')">
+                    <i class="fas fa-cogs"></i> System
+                </button>
+            </div>
+
+            <div id="adminOverviewSection" class="admin-content">
+                <h3><i class="fas fa-tachometer-alt"></i> System Overview</h3>
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <i class="fas fa-users"></i>
+                        <h4>Total Customers</h4>
+                        <p id="totalCustomers">0</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <i class="fas fa-coins"></i>
+                        <h4>Total PGC in Circulation</h4>
+                        <p id="totalPGC">0.00000000</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h4>Total Cash Holdings</h4>
+                        <p id="totalCash">$0.00</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h4>Total Transactions</h4>
+                        <p id="totalTransactionsAdmin">0</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <i class="fas fa-hammer"></i>
+                        <h4>Active Miners</h4>
+                        <p id="activeMiners">0</p>
+                    </div>
+                    <div class="admin-stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>PGC Market Value</h4>
+                        <p>$0.50 USD</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="adminCustomersSection" class="admin-content hidden">
+                <h3><i class="fas fa-users"></i> Customer Management</h3>
+                <div class="customer-management">
+                    <div class="customer-actions">
+                        <button class="action-btn" onclick="showCreateCustomerModal()">
+                            <i class="fas fa-user-plus"></i> Create Customer
+                        </button>
+                        <input type="text" id="searchCustomers" placeholder="Search customers...">
+                    </div>
+                    <div class="customer-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Account Number</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>PGC Balance</th>
+                                    <th>Cash Balance</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customerTableBody">
+                                <tr>
+                                    <td colspan="8" class="no-customers">No customers yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="adminTransactionsSection" class="admin-content hidden">
+                <h3><i class="fas fa-exchange-alt"></i> Transaction Monitoring</h3>
+                <div class="transaction-monitoring">
+                    <div class="transaction-logs">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Type</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTransactionTableBody">
+                            <tr>
+                                <td colspan="6" class="no-transactions">No transactions yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="adminSecuritySection" class="admin-content hidden">
+                <h3><i class="fas fa-shield-alt"></i> Security Monitoring</h3>
+                <div class="security-dashboard">
+                    <div class="security-alerts">
+                        <h4>Security Alerts</h4>
+                        <div id="securityAlertsList">
+                            <p class="no-alerts">No security alerts</p>
+                        </div>
+                    </div>
+                    <div class="login-monitoring">
+                        <h4>Login Activity</h4>
+                        <div id="loginActivityList">
+                            <p class="no-activity">No recent login activity</p>
+                        </div>
+                    </div>
+                    <div class="hacker-tracker">
+                        <h4>Suspicious Activity Tracker</h4>
+                        <div id="hackerTrackerList">
+                            <p class="no-suspicious">No suspicious activity detected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="adminSystemSection" class="admin-content hidden">
+                <h3><i class="fas fa-cogs"></i> System Configuration</h3>
+                <div class="system-settings">
+                    <div class="setting-group">
+                        <h4>PGC Settings</h4>
+                        <div class="setting-item">
+                            <label>Current PGC Value (USD)</label>
+                            <input type="number" step="0.01" value="0.50" id="pgcValue">
+                            <button onclick="updatePGCValue()">Update</button>
+                        </div>
+                        <div class="setting-item">
+                            <label>Mining Rate (PGC/second)</label>
+                            <input type="number" step="0.00000001" value="0.00000001" id="miningRateSetting">
+                            <button onclick="updateMiningRate()">Update</button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h4>Bank Information</h4>
+                        <div class="bank-details">
+                            <p><strong>Bank Name:</strong> Adegan Global Bank Nigeria</p>
+                            <p><strong>Owner:</strong> Olawale Abdul-Ganiyu Adeshina</p>
+                            <p><strong>Email:</strong> adeganglobal@gmail.com</p>
+                            <p><strong>Phone:</strong> +2349030277275</p>
+                            <p><strong>Founded:</strong> 13/12/1985</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../network-bridge.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

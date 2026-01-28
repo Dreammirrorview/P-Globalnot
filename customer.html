@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim Customer Banking Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Customer Cover Page -->
+        <div id="customerCoverPage" class="customer-cover-page">
+            <div class="customer-header">
+                <div class="customer-logo">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h1>Pilgrim Customer Banking</h1>
+                <h2>Personal Financial Portal</h2>
+                <p class="partner-badge">Connected to Global Bank Pilgrim Network</p>
+            </div>
+
+            <div class="customer-message">
+                <h3>Send & Receive Money Worldwide</h3>
+                <p class="customer-tagline">Transfer funds to friends, family, and businesses globally</p>
+                <p class="customer-subtagline">Real-time transactions with secure banking infrastructure</p>
+            </div>
+
+            <div class="customer-features">
+                <div class="feature-card">
+                    <i class="fas fa-paper-plane"></i>
+                    <h4>Send Money</h4>
+                    <p>Transfer to anyone, anywhere in the world</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-download"></i>
+                    <h4>Receive Money</h4>
+                    <p>Get payments from friends and family</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h4>Exchange Crypto</h4>
+                    <p>Convert between different cryptocurrencies</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-history"></i>
+                    <h4>Transaction History</h4>
+                    <p>Track all your financial activities</p>
+                </div>
+            </div>
+
+            <div class="customer-actions">
+                <button class="customer-btn primary" onclick="showSection('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login to Account
+                </button>
+                <button class="customer-btn" onclick="showSection('register')">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <button class="customer-btn" onclick="showSection('forgotPassword')">
+                    <i class="fas fa-key"></i> Forgot Password
+                </button>
+            </div>
+        </div>
+
+        <!-- Customer Registration Page -->
+        <div id="customerRegisterPage" class="customer-auth-section hidden">
+            <div class="auth-container customer-container">
+                <h2><i class="fas fa-user-plus"></i> Create Customer Account</h2>
+                <form id="customerRegisterForm" onsubmit="handleCustomerRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username *</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password *</label>
+                        <input type="password" name="confirmPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country *</label>
+                        <input type="text" name="country" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Account Type</label>
+                        <select name="accountType">
+                            <option value="personal">Personal Account</option>
+                            <option value="business">Business Account</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Customer Login Page -->
+        <div id="customerLoginPage" class="customer-auth-section hidden">
+            <div class="auth-container customer-container">
+                <h2><i class="fas fa-sign-in-alt"></i> Customer Login</h2>
+                <form id="customerLoginForm" onsubmit="handleCustomerLogin(event)">
+                    <div class="form-group">
+                        <label>Username or Email</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Customer Forgot Password Page -->
+        <div id="customerForgotPasswordPage" class="customer-auth-section hidden">
+            <div class="auth-container customer-container">
+                <h2><i class="fas fa-key"></i> Reset Password</h2>
+                <form id="customerForgotPasswordForm" onsubmit="handleCustomerForgotPassword(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Reset Link</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Customer Dashboard -->
+        <div id="customerDashboard" class="customer-dashboard hidden">
+            <div class="dashboard-header">
+                <div class="customer-info">
+                    <div class="customer-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="customer-details">
+                        <h3 id="customerName">Welcome, Customer</h3>
+                        <p id="customerAccount">Account: 1234567890</p>
+                        <p id="customerEmail">customer@email.com</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="refresh-btn" onclick="refreshBalances()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </div>
+                    <button class="logout-btn" onclick="handleCustomerLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Balance Overview -->
+            <div class="balance-overview">
+                <div class="balance-card main-balance">
+                    <div class="balance-header">
+                        <h3><i class="fas fa-wallet"></i> Available Balance</h3>
+                    </div>
+                    <div class="balance-amount">
+                        <span class="amount-value" id="mainBalance">$0.00</span>
+                        <span class="currency">USD</span>
+                    </div>
+                    <p class="balance-note">Real-time balance from bank network</p>
+                </div>
+
+                <div class="balance-card pending-balance">
+                    <div class="balance-header">
+                        <h3><i class="fas fa-clock"></i> Pending Credits</h3>
+                    </div>
+                    <div class="balance-amount">
+                        <span class="amount-value" id="pendingBalance">$0.00</span>
+                        <span class="currency">USD</span>
+                    </div>
+                    <p class="balance-note">From admin transactions</p>
+                </div>
+
+                <div class="balance-card pgc-balance">
+                    <div class="balance-header">
+                        <h3><i class="fas fa-coins"></i> PGC Balance</h3>
+                    </div>
+                    <div class="balance-amount">
+                        <span class="amount-value" id="pgcBalance">0.00000000</span>
+                        <span class="currency">PGC</span>
+                    </div>
+                    <p class="balance-note">Pilgrims Coin</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-card send-action" onclick="showActionSection('send')">
+                    <i class="fas fa-paper-plane"></i>
+                    <h4>Send Money</h4>
+                    <p>Transfer to friends & family</p>
+                </button>
+                <button class="action-card receive-action" onclick="showActionSection('receive')">
+                    <i class="fas fa-download"></i>
+                    <h4>Receive Money</h4>
+                    <p>Get payment from others</p>
+                </button>
+                <button class="action-card exchange-action" onclick="showActionSection('exchange')">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h4>Exchange</h4>
+                    <p>Convert crypto & fiat</p>
+                </button>
+                <button class="action-card history-action" onclick="showActionSection('history')">
+                    <i class="fas fa-history"></i>
+                    <h4>History</h4>
+                    <p>View transactions</p>
+                </button>
+            </div>
+
+            <!-- Action Sections -->
+            <div id="sendMoneySection" class="action-section hidden">
+                <h3><i class="fas fa-paper-plane"></i> Send Money</h3>
+                <div class="send-money-form">
+                    <form id="sendMoneyForm" onsubmit="handleSendMoney(event)">
+                        <div class="form-group">
+                            <label>Recipient Type</label>
+                            <select name="recipientType" required onchange="updateRecipientFields()">
+                                <option value="customer">Pilgrim Customer</option>
+                                <option value="external">External Bank Account</option>
+                                <option value="crypto">Crypto Wallet</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="recipientUsernameGroup">
+                            <label>Recipient Username</label>
+                            <input type="text" name="recipientUsername" placeholder="Enter username">
+                        </div>
+                        <div class="form-group hidden" id="recipientAccountGroup">
+                            <label>Bank Account Number</label>
+                            <input type="text" name="accountNumber" placeholder="Enter account number">
+                        </div>
+                        <div class="form-group hidden" id="recipientWalletGroup">
+                            <label>Wallet Address</label>
+                            <input type="text" name="walletAddress" placeholder="Enter wallet address">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount (USD)</label>
+                            <input type="number" step="0.01" name="amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description (Optional)</label>
+                            <input type="text" name="description" placeholder="What's this for?">
+                        </div>
+                        <button type="submit" class="submit-btn send-btn">
+                            <i class="fas fa-paper-plane"></i> Send Money
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="receiveMoneySection" class="action-section hidden">
+                <h3><i class="fas fa-download"></i> Receive Money</h3>
+                <div class="receive-money-info">
+                    <div class="receive-details">
+                        <h4>Your Account Details</h4>
+                        <div class="detail-item">
+                            <label>Account Number:</label>
+                            <input type="text" id="myAccountNumber" readonly value="1234567890">
+                            <button class="copy-btn" onclick="copyAccountNumber()">Copy</button>
+                        </div>
+                        <div class="detail-item">
+                            <label>Username:</label>
+                            <input type="text" id="myUsername" readonly value="username">
+                            <button class="copy-btn" onclick="copyUsername()">Copy</button>
+                        </div>
+                        <div class="detail-item">
+                            <label>PGC Wallet:</label>
+                            <input type="text" id="myPGCWallet" readonly value="PGC-1234567890-ABCD">
+                            <button class="copy-btn" onclick="copyPGCWallet()">Copy</button>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code">
+                            <i class="fas fa-qrcode fa-5x"></i>
+                            <p>Scan to send money</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="exchangeSection" class="action-section hidden">
+                <h3><i class="fas fa-exchange-alt"></i> Exchange Currency</h3>
+                <div class="exchange-form">
+                    <form id="customerExchangeForm" onsubmit="handleCustomerExchange(event)">
+                        <div class="exchange-row">
+                            <div class="form-group">
+                                <label>From Currency</label>
+                                <select name="fromCurrency" id="customerFromCurrency" required onchange="updateCustomerExchangeRate()">
+                                    <option value="USD">US Dollar (USD)</option>
+                                    <option value="PGC">Pilgrims Coin (PGC)</option>
+                                    <option value="BTC">Bitcoin (BTC)</option>
+                                    <option value="ETH">Ethereum (ETH)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>To Currency</label>
+                                <select name="toCurrency" id="customerToCurrency" required onchange="updateCustomerExchangeRate()">
+                                    <option value="USD">US Dollar (USD)</option>
+                                    <option value="PGC">Pilgrims Coin (PGC)</option>
+                                    <option value="BTC">Bitcoin (BTC)</option>
+                                    <option value="ETH">Ethereum (ETH)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="exchange-rate-display">
+                            <p>Exchange Rate: <span id="customerExchangeRate">1 USD = 2.0 PGC</span></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" step="0.00000001" name="amount" required id="customerExchangeAmount" oninput="calculateCustomerExchange()">
+                        </div>
+                        <div class="exchange-result">
+                            <p>You will receive: <span id="customerExchangeResult">0.00</span> <span id="customerExchangeToCurrency">USD</span></p>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-exchange-alt"></i> Exchange Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="historySection" class="action-section hidden">
+                <h3><i class="fas fa-history"></i> Transaction History</h3>
+                <div class="transaction-filters">
+                    <input type="text" id="searchCustomerTransactions" placeholder="Search transactions...">
+                    <select id="filterTransactionType">
+                        <option value="all">All Types</option>
+                        <option value="send">Sent</option>
+                        <option value="receive">Received</option>
+                        <option value="credit">Credits</option>
+                        <option value="debit">Debits</option>
+                        <option value="exchange">Exchanges</option>
+                    </select>
+                    <select id="filterTransactionStatus">
+                        <option value="all">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                <div class="transactions-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Balance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTransactionTableBody">
+                            <tr>
+                                <td colspan="6" class="no-transactions">No transactions yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Dashboard Navigation -->
+            <div class="dashboard-nav">
+                <button class="nav-btn active" onclick="showCustomerSection('dashboard')">
+                    <i class="fas fa-home"></i> Dashboard
+                </button>
+                <button class="nav-btn" onclick="showCustomerSection('send')">
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
+                <button class="nav-btn" onclick="showCustomerSection('receive')">
+                    <i class="fas fa-download"></i> Receive
+                </button>
+                <button class="nav-btn" onclick="showCustomerSection('exchange')">
+                    <i class="fas fa-exchange-alt"></i> Exchange
+                </button>
+                <button class="nav-btn" onclick="showCustomerSection('history')">
+                    <i class="fas fa-history"></i> History
+                </button>
+                <button class="nav-btn" onclick="showCustomerSection('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profileSection" class="profile-section hidden">
+                <h3><i class="fas fa-user"></i> Profile Settings</h3>
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <h4>Personal Information</h4>
+                        <form id="customerProfileForm" onsubmit="updateCustomerProfile(event)">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" name="fullName" id="customerProfileFullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" id="customerProfileEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" id="customerProfilePhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" name="accountNumber" id="customerProfileAccountNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" id="customerProfileUsername" readonly>
+                            </div>
+                            <button type="submit" class="submit-btn">Update Profile</button>
+                        </form>
+                    </div>
+                    <div class="security-settings">
+                        <h4>Security Settings</h4>
+                        <form id="customerSecurityForm" onsubmit="changeCustomerPassword(event)">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" name="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" name="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="submit-btn">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../network-bridge.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

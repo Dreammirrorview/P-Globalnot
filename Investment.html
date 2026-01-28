@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim Investment - Shares & Investment Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Investment Cover Page -->
+        <div id="investmentCoverPage" class="investment-cover-page">
+            <div class="investment-header">
+                <div class="investment-logo">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h1>Pilgrim Investment</h1>
+                <h2>Shares & Investment Platform</h2>
+                <p class="owner-badge">Owned by O.A.A. Pilgrim</p>
+            </div>
+
+            <div class="investment-message">
+                <h3>Investment and Shares for Pilgrim User</h3>
+                <p class="investment-tagline">Invest in Pilgrim for future achievements</p>
+                <p class="investment-subtagline">Buy shares today and benefit</p>
+            </div>
+
+            <div class="investment-details">
+                <div class="detail-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>10-Year Share Duration</h4>
+                    <p>Long-term investment opportunity with guaranteed returns</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-percentage"></i>
+                    <h4>Yearly Interest</h4>
+                    <p>Shareholders interest paid at the end of every calendar month</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Regular Updates</h4>
+                    <p>More details sent upon application approval</p>
+                </div>
+            </div>
+
+            <div class="investment-actions">
+                <button class="investment-btn primary" onclick="showSection('register')">
+                    <i class="fas fa-user-plus"></i> Register for Investment
+                </button>
+                <button class="investment-btn" onclick="showSection('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login to Account
+                </button>
+                <button class="investment-btn" onclick="showSection('forgotPassword')">
+                    <i class="fas fa-key"></i> Forgot Password
+                </button>
+            </div>
+
+            <div class="investment-news">
+                <h3><i class="fas fa-newspaper"></i> Latest News & Updates</h3>
+                <div class="news-list" id="newsList">
+                    <div class="news-item">
+                        <span class="news-date">2024-01-15</span>
+                        <p class="news-title">Pilgrim Coin Listed on Major Exchanges</p>
+                        <p class="news-summary">PGC now available on PancakeSwap, Uniswap, and QuickSwap</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2024-01-10</span>
+                        <p class="news-title">Shareholder Dividends Increased</p>
+                        <p class="news-summary">Annual return rate increased to 15% for premium investors</p>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2024-01-05</span>
+                        <p class="news-title">New Investment Tiers Available</p>
+                        <p class="news-summary">Choose from Basic, Standard, and Premium investment plans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Registration Page -->
+        <div id="investmentRegisterPage" class="investment-auth-section hidden">
+            <div class="auth-container investment-container">
+                <h2><i class="fas fa-user-plus"></i> Investment Registration</h2>
+                <p class="auth-subtitle">Choose your investment path and start building wealth</p>
+
+                <div class="investment-type-selection">
+                    <h3>Select Investment Type</h3>
+                    <div class="investment-types">
+                        <label class="investment-type-option">
+                            <input type="radio" name="investmentType" value="investment" checked onchange="updateInvestmentForm()">
+                            <div class="type-card">
+                                <i class="fas fa-coins"></i>
+                                <h4>Direct Investment</h4>
+                                <p>Invest directly and earn returns based on performance</p>
+                            </div>
+                        </label>
+                        <label class="investment-type-option">
+                            <input type="radio" name="investmentType" value="shares" onchange="updateInvestmentForm()">
+                            <div class="type-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <h4>Share Purchase</h4>
+                                <p>Buy shares and become a company shareholder</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <form id="investmentRegisterForm" onsubmit="handleInvestmentRegister(event)">
+                    <div class="form-section">
+                        <h4>Personal Information</h4>
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth *</label>
+                            <input type="date" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Country *</label>
+                            <input type="text" name="country" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Address *</label>
+                            <textarea name="address" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Account Information</h4>
+                        <div class="form-group">
+                            <label>Username *</label>
+                            <input type="text" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password *</label>
+                            <input type="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password *</label>
+                            <input type="password" name="confirmPassword" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Investment Details</h4>
+                        <div class="form-group">
+                            <label>Investment Amount (USD) *</label>
+                            <input type="number" step="0.01" name="investmentAmount" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Investment Duration *</label>
+                            <select name="duration" required>
+                                <option value="1">1 Year</option>
+                                <option value="3">3 Years</option>
+                                <option value="5">5 Years</option>
+                                <option value="10" selected>10 Years (Recommended)</option>
+                            </select>
+                        </div>
+                        <div class="investment-tier-selection">
+                            <h4>Select Investment Tier</h4>
+                            <div class="tier-options">
+                                <label class="tier-option">
+                                    <input type="radio" name="tier" value="basic" required>
+                                    <div class="tier-card basic-tier">
+                                        <h5>Basic</h5>
+                                        <p class="tier-amount">$1,000 - $9,999</p>
+                                        <p class="tier-return">8% Annual Return</p>
+                                    </div>
+                                </label>
+                                <label class="tier-option">
+                                    <input type="radio" name="tier" value="standard">
+                                    <div class="tier-card standard-tier">
+                                        <h5>Standard</h5>
+                                        <p class="tier-amount">$10,000 - $49,999</p>
+                                        <p class="tier-return">12% Annual Return</p>
+                                    </div>
+                                </label>
+                                <label class="tier-option">
+                                    <input type="radio" name="tier" value="premium">
+                                    <div class="tier-card premium-tier">
+                                        <h5>Premium</h5>
+                                        <p class="tier-amount">$50,000+</p>
+                                        <p class="tier-return">15% Annual Return</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Document Verification *</h4>
+                        <div class="form-group">
+                            <label>ID Document Type *</label>
+                            <select name="idType" required>
+                                <option value="">Select ID Type</option>
+                                <option value="drivers_license">Driver's License</option>
+                                <option value="passport">International Passport</option>
+                                <option value="voter_card">Voter's Card</option>
+                                <option value="national_id">National ID Card</option>
+                                <option value="work_id">Work ID</option>
+                                <option value="bank_statement">Bank Statement</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ID Document Number *</label>
+                            <input type="text" name="idNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload ID Document *</label>
+                            <input type="file" name="idDocument" accept="image/*,.pdf" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Passport Photograph *</label>
+                            <input type="file" name="passportPhoto" accept="image/*" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Additional Information</h4>
+                        <div class="form-group">
+                            <label>BVN/NIN (Optional)</label>
+                            <input type="text" name="bvnNin">
+                        </div>
+                        <div class="form-group">
+                            <label>Bank Name (for withdrawals)</label>
+                            <input type="text" name="bankName">
+                        </div>
+                        <div class="form-group">
+                            <label>Bank Account Number</label>
+                            <input type="text" name="bankAccountNumber">
+                        </div>
+                    </div>
+
+                    <div class="agreement-section">
+                        <label class="agreement-checkbox">
+                            <input type="checkbox" name="agreement" required>
+                            <span>I agree to the terms and conditions of Pilgrim Investment and understand that this is a 10-year share commitment with yearly interest payments.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn investment-submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Investment Application
+                    </button>
+                </form>
+
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Investment Login Page -->
+        <div id="investmentLoginPage" class="investment-auth-section hidden">
+            <div class="auth-container investment-container">
+                <h2><i class="fas fa-sign-in-alt"></i> Investor Login</h2>
+                <form id="investmentLoginForm" onsubmit="handleInvestmentLogin(event)">
+                    <div class="form-group">
+                        <label>Username or Email</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Investment Forgot Password Page -->
+        <div id="investmentForgotPasswordPage" class="investment-auth-section hidden">
+            <div class="auth-container investment-container">
+                <h2><i class="fas fa-key"></i> Reset Password</h2>
+                <form id="investmentForgotPasswordForm" onsubmit="handleInvestmentForgotPassword(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Reset Link</button>
+                </form>
+                <button class="back-btn" onclick="showSection('cover')">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- Investor Dashboard -->
+        <div id="investorDashboard" class="investor-dashboard hidden">
+            <div class="dashboard-header">
+                <div class="investor-info">
+                    <div class="investor-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="investor-details">
+                        <h3 id="investorName">Welcome, Investor</h3>
+                        <p id="investorAccount">Serial: ABC123456</p>
+                        <p id="investorEmail">investor@email.com</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleInvestorLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- Investment Portfolio -->
+            <div class="investment-portfolio">
+                <div class="portfolio-card total-investment">
+                    <div class="portfolio-header">
+                        <h3><i class="fas fa-chart-line"></i> Total Investment</h3>
+                    </div>
+                    <div class="portfolio-value">
+                        <span class="value-amount" id="totalInvestment">$0.00</span>
+                        <span class="currency">USD</span>
+                    </div>
+                    <p class="portfolio-return">Expected Return: <span id="expectedReturn">$0.00</span></p>
+                </div>
+
+                <div class="portfolio-card current-value">
+                    <div class="portfolio-header">
+                        <h3><i class="fas fa-wallet"></i> Current Value</h3>
+                    </div>
+                    <div class="portfolio-value">
+                        <span class="value-amount" id="currentValue">$0.00</span>
+                        <span class="currency">USD</span>
+                    </div>
+                    <p class="portfolio-gain">Total Gain: <span id="totalGain" class="positive">+$0.00</span></p>
+                </div>
+
+                <div class="portfolio-card monthly-return">
+                    <div class="portfolio-header">
+                        <h3><i class="fas fa-calendar-check"></i> Monthly Return</h3>
+                    </div>
+                    <div class="portfolio-value">
+                        <span class="value-amount" id="monthlyReturn">$0.00</span>
+                        <span class="currency">USD</span>
+                    </div>
+                    <p class="portfolio-next">Next Payment: <span id="nextPaymentDate">End of Month</span></p>
+                </div>
+
+                <div class="portfolio-card shares-owned">
+                    <div class="portfolio-header">
+                        <h3><i class="fas fa-chart-pie"></i> Shares Owned</h3>
+                    </div>
+                    <div class="portfolio-value">
+                        <span class="value-amount" id="sharesOwned">0</span>
+                        <span class="currency">Shares</span>
+                    </div>
+                    <p class="portfolio-tier">Tier: <span id="investorTier">Basic</span></p>
+                </div>
+            </div>
+
+            <!-- Dashboard Navigation -->
+            <div class="dashboard-nav">
+                <button class="nav-btn active" onclick="showInvestorSection('overview')">
+                    <i class="fas fa-home"></i> Overview
+                </button>
+                <button class="nav-btn" onclick="showInvestorSection('portfolio')">
+                    <i class="fas fa-chart-pie"></i> Portfolio
+                </button>
+                <button class="nav-btn" onclick="showInvestorSection('returns')">
+                    <i class="fas fa-percentage"></i> Returns
+                </button>
+                <button class="nav-btn" onclick="showInvestorSection('documents')">
+                    <i class="fas fa-file-alt"></i> Documents
+                </button>
+                <button class="nav-btn" onclick="showInvestorSection('contact')">
+                    <i class="fas fa-envelope"></i> Contact Admin
+                </button>
+                <button class="nav-btn" onclick="showInvestorSection('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div id="investorOverviewSection" class="dashboard-content">
+                <h3>Investment Overview</h3>
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Investment Duration</h4>
+                        <p id="investmentDuration">10 Years</p>
+                        <p class="subtitle">Started: <span id="startDate">Not started</span></p>
+                    </div>
+                    <div class="overview-card">
+                        <i class="fas fa-percentage"></i>
+                        <h4>Annual Return Rate</h4>
+                        <p id="annualReturnRate">8%</p>
+                        <p class="subtitle">Compounded Monthly</p>
+                    </div>
+                    <div class="overview-card">
+                        <i class="fas fa-coins"></i>
+                        <h4>Total PGC Linked</h4>
+                        <p id="linkedPGC">0.00000000</p>
+                        <p class="subtitle">Pilgrims Coin</p>
+                    </div>
+                    <div class="overview-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Account Status</h4>
+                        <p id="accountStatus">Pending Approval</p>
+                        <p class="subtitle">Review in progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investorPortfolioSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-chart-pie"></i> Investment Portfolio</h3>
+                <div class="portfolio-details">
+                    <div class="investment-breakdown">
+                        <h4>Investment Breakdown</h4>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Principal Amount</span>
+                            <span class="breakdown-value" id="principalAmount">$0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Interest Earned</span>
+                            <span class="breakdown-value" id="interestEarned">$0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Bonus Returns</span>
+                            <span class="breakdown-value" id="bonusReturns">$0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Total Value</span>
+                            <span class="breakdown-value total" id="portfolioTotal">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="performance-chart">
+                        <h4>Performance Chart</h4>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-area fa-3x"></i>
+                            <p>Investment performance visualization</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investorReturnsSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-percentage"></i> Returns History</h3>
+                <div class="returns-history">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="returnsTableBody">
+                            <tr>
+                                <td colspan="5" class="no-returns">No returns yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="investorDocumentsSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-file-alt"></i> Investment Documents</h3>
+                <div class="documents-list">
+                    <div class="document-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="document-info">
+                            <h4>Investment Agreement</h4>
+                            <p>Terms and conditions of your investment</p>
+                        </div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                    <div class="document-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="document-info">
+                            <h4>Share Certificate</h4>
+                            <p>Official share ownership certificate</p>
+                        </div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                    <div class="document-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="document-info">
+                            <h4>Tax Documents</h4>
+                            <p>Annual tax statements and reports</p>
+                        </div>
+                        <button class="download-btn">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investorContactSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-envelope"></i> Contact Administration</h3>
+                <div class="contact-admin">
+                    <div class="contact-info">
+                        <h4>Send Message to Admin</h4>
+                        <form id="contactAdminForm" onsubmit="handleContactAdmin(event)">
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <select name="subject" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="registration">Registration Inquiry</option>
+                                    <option value="investment">Investment Question</option>
+                                    <option value="returns">Returns Inquiry</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea name="message" rows="5" required placeholder="Type your message here..."></textarea>
+                            </div>
+                            <input type="hidden" name="recipientEmail" value="adeganglobal@gmail.com">
+                            <input type="hidden" name="ccEmail" value="pilgrimshares@gmail.com">
+                            <div class="sender-info">
+                                <p><strong>Your Name:</strong> <span id="senderName"></span></p>
+                                <p><strong>Your Account:</strong> <span id="senderAccount"></span></p>
+                                <p><strong>Your Serial:</strong> <span id="senderSerial"></span></p>
+                                <p><strong>Your Email:</strong> <span id="senderEmail"></span></p>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Contact Information</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>Email: adeganglobal@gmail.com</p>
+                                <p>CC: pilgrimshares@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>Phone: +2349030277275</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <p>Adegan Global Bank Nigeria</p>
+                                <p>Partnership with O.A.A. Pinetree Solution</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investorProfileSection" class="dashboard-content hidden">
+                <h3><i class="fas fa-user"></i> Profile Settings</h3>
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <h4>Personal Information</h4>
+                        <form id="investorProfileForm" onsubmit="updateInvestorProfile(event)">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" name="fullName" id="investorProfileFullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" id="investorProfileEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" id="investorProfilePhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" name="accountNumber" id="investorProfileAccountNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Serial Number</label>
+                                <input type="text" name="serialNumber" id="investorProfileSerialNumber" readonly>
+                            </div>
+                            <button type="submit" class="submit-btn">Update Profile</button>
+                        </form>
+                    </div>
+                    <div class="security-settings">
+                        <h4>Security Settings</h4>
+                        <form id="investorSecurityForm" onsubmit="changeInvestorPassword(event)">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" name="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" name="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="submit-btn">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../network-bridge.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
